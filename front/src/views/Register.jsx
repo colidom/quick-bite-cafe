@@ -11,21 +11,61 @@ export default function Register() {
                             Nombre:
                         </label>
                         <input type="text" 
-                        id="name" 
-                        className="mt-2 w-full p-3 bg-gray-100" 
-                        name="name" 
-                        placeholder="Tu nombre" />
+                            id="name" 
+                            className="mt-2 w-full p-3 bg-gray-100" 
+                            name="name" 
+                            placeholder="Tu nombre" />
                     </div>
                     <div className="mb-4">
                         <label className="text-slate-800" htmlFor="surname">
                             Apellido:
                         </label>
                         <input type="text" 
-                        id="surname" 
-                        className="mt-2 w-full p-3 bg-gray-100" 
-                        name="surname" 
-                        placeholder="Tu apellido" />
+                            id="surname" 
+                            className="mt-2 w-full p-3 bg-gray-100" 
+                            name="surname" 
+                            placeholder="Tu apellido" />
                     </div>
+                    <div className="mb-4">
+                        <label className="text-slate-800" htmlFor="email">
+                            Email:
+                        </label>
+                        <input type="email" 
+                            id="email" 
+                            className="mt-2 w-full p-3 bg-gray-100" 
+                            name="email" 
+                            placeholder="Tu email" 
+                            formNoValidate
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="text-slate-800" htmlFor="email">
+                            Contraseña:
+                        </label>
+                        <input type="password" 
+                            id="password" 
+                            className="mt-2 w-full p-3 bg-gray-100" 
+                            name="password" 
+                            placeholder="Tu contraseña" 
+                            formNoValidate
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label className="text-slate-800" htmlFor="email">
+                            Repetir contraseña:
+                        </label>
+                        <input type="password" 
+                            id="password_confirmation" 
+                            className="mt-2 w-full p-3 bg-gray-100" 
+                            name="password_confirmation" 
+                            placeholder="Repite tu contraseña" 
+                            formNoValidate
+                        />
+                    </div>
+                    <input type="submit" 
+                        value="Crear cuenta"
+                        className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold cursor-pointer"
+                    />
                 </form>
             </div>
         </>
