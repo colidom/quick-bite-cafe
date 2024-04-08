@@ -8,13 +8,23 @@ export default function Register() {
                 <form action="">
                     <div className="mb-4">
                         <label className="text-slate-800" htmlFor="name">
-                            Nombre:{" "}
+                            Nombre:
                         </label>
                         <input type="text" 
                         id="name" 
-                        className="mt-2 blck p-3 bg-gray-100" 
+                        className="mt-2 w-full p-3 bg-gray-100" 
                         name="name" 
                         placeholder="Tu nombre" />
+                    </div>
+                    <div className="mb-4">
+                        <label className="text-slate-800" htmlFor="surname">
+                            Apellido:
+                        </label>
+                        <input type="text" 
+                        id="surname" 
+                        className="mt-2 w-full p-3 bg-gray-100" 
+                        name="surname" 
+                        placeholder="Tu apellido" />
                     </div>
                 </form>
             </div>
