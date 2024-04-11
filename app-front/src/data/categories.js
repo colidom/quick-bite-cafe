@@ -29,21 +29,6 @@ const categories = [
         name: "Galletas",
         id: 6,
     },
-    {
-        icono: "helado",
-        name: "Helados",
-        id: 7,
-    },
-    {
-        icono: "sushi",
-        name: "Sushi",
-        id: 8,
-    },
-    {
-        icono: "ensalada",
-        name: "Ensaladas",
-        id: 9,
-    },
 ];
 
 export { categories };
