@@ -10,9 +10,7 @@ export default function Sidebar() {
 
             <div className="mt-10">
                 {categories.map((category) => (
-                    <Category 
-                        key={category.id} 
-                        category={category} />
+                    <Category key={category.id} category={category} />
                 ))}
             </div>
 
