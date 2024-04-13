@@ -1,11 +1,12 @@
-import { products } from "../data/products";
+import { products as data } from "../data/products";
 import Product from "../components/Product";
 import useKiosk from "../hooks/useKiosk";
 
 export default function Home() {
     const { currentCategory } = useKiosk();
 
-    console.log(currentCategory);
+    const products = data.filter((product) => product.category_id === currentCategory.id);
+
     return (
         <>
             <h1 className="text-4l font-black">{currentCategory.name}</h1>
