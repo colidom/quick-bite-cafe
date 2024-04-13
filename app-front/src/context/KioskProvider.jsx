@@ -8,5 +8,5 @@ const KioskProvider = ({ children }) => {
     return <KioskContext.Provider value={{ hola }}>{children}</KioskContext.Provider>;
 };
 
-export { KioskContext };
+export { KioskProvider };
 export default KioskContext;
