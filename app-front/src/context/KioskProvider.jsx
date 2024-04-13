@@ -1,10 +1,12 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
+import { categories as dbCategories } from "../data/categories";
 
 const KioskContext = createContext();
-const autenticado = true;
 
 const KioskProvider = ({ children }) => {
-    return <KioskContext.Provider value={{ autenticado }}>{children}</KioskContext.Provider>;
+    const [categories, setCategories] = useState(dbCategories);
+
+    return <KioskContext.Provider value={{ categories }}>{children}</KioskContext.Provider>;
 };
 
 export { KioskProvider };
