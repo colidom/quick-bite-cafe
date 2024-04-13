@@ -2,7 +2,6 @@ import { products } from "../data/products";
 import Product from "../components/Product";
 import useKiosk from "../hooks/useKiosk";
 
-console.log(products);
 export default function Home() {
     const { autenticado } = useKiosk();
 
