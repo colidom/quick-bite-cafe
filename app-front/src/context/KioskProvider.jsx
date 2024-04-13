@@ -1,11 +1,10 @@
 import { createContext } from "react";
 
 const KioskContext = createContext();
-
-const hola = "Hola Mundo!";
+const autenticado = true;
 
 const KioskProvider = ({ children }) => {
-    return <KioskContext.Provider value={{ hola }}>{children}</KioskContext.Provider>;
+    return <KioskContext.Provider value={{ autenticado }}>{children}</KioskContext.Provider>;
 };
 
 export { KioskProvider };
