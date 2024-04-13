@@ -8,9 +8,9 @@ const KioskProvider = ({ children }) => {
     const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
     // Convención evento clic
-    const handleClickCategory = (category) => {
-        // setCurrentCategory(category);
-        console.log("haciendo clic en categoría");
+    const handleClickCategory = (id) => {
+        const category = categories.filter((category) => category.id === id)[0];
+        setCurrentCategory(category);
     };
 
     return <KioskContext.Provider value={{ categories, currentCategory, handleClickCategory }}>{children}</KioskContext.Provider>;
