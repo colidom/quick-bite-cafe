@@ -6,6 +6,7 @@ const KioskContext = createContext();
 const KioskProvider = ({ children }) => {
     const [categories, setCategories] = useState(dbCategories);
     const [currentCategory, setCurrentCategory] = useState(categories[0]);
+    const [modal, setModal] = useState(false);
 
     // Convención evento clic
     const handleClickCategory = (id) => {
@@ -13,7 +14,23 @@ const KioskProvider = ({ children }) => {
         setCurrentCategory(category);
     };
 
-    return <KioskContext.Provider value={{ categories, currentCategory, handleClickCategory }}>{children}</KioskContext.Provider>;
+    const handleClickModal = () => {
+        setModal(!modal);
+    };
+
+    return (
+        <KioskContext.Provider
+            value={{
+                categories,
+                currentCategory,
+                handleClickCategory,
+                modal,
+                handleClickModal,
+            }}
+        >
+            {children}
+        </KioskContext.Provider>
+    );
 };
 
 export { KioskProvider };

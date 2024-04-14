@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { formatCurrency } from "../helpers";
+import useKiosk from "../hooks/useKiosk";
 
 export default function Product({ product }) {
+    const { handleClickModal } = useKiosk();
     const { name, image, price } = product;
 
     return (
@@ -10,7 +12,11 @@ export default function Product({ product }) {
             <div className="py-5">
                 <h3 className="text-2xl font-bold">{name}</h3>
                 <p className="mt-5 font-black text-4xl text-amber-500">{formatCurrency(price)}</p>
-                <button type="button" className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold">
+                <button
+                    type="button"
+                    className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
+                    onClick={() => handleClickModal()}
+                >
                     Agregar
                 </button>
             </div>
