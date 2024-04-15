@@ -3,7 +3,7 @@ import { formatCurrency } from "../helpers";
 import useKiosk from "../hooks/useKiosk";
 
 export default function Product({ product }) {
-    const { handleClickModal } = useKiosk();
+    const { handleClickModal, handleSetProduct } = useKiosk();
     const { name, image, price } = product;
 
     return (
@@ -15,7 +15,10 @@ export default function Product({ product }) {
                 <button
                     type="button"
                     className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
-                    onClick={() => handleClickModal()}
+                    onClick={() => {
+                        handleClickModal();
+                        handleSetProduct(product);
+                    }}
                 >
                     Agregar
                 </button>

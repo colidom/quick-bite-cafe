@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Modal from "react-modal";
 import Sidebar from "../components/Sidebar";
 import Summery from "../components/Summery";
+import ModalProduct from "../components/ModalProduct";
 import useKiosk from "../hooks/useKiosk";
 
 const customStyles = {
@@ -15,8 +16,10 @@ const customStyles = {
     },
 };
 
+Modal.setAppElement("#root");
+
 export default function Layout() {
-    const { modal, handleClickModal } = useKiosk();
+    const { modal } = useKiosk();
 
     console.log(modal);
 
@@ -31,12 +34,9 @@ export default function Layout() {
 
                 <Summery />
             </div>
-            {modal && (
-                <Modal isOpen={modal} style={customStyles}>
-                    <p>Desde Modal</p>
-                    <button onClick={handleClickModal}>Cerrar</button>
-                </Modal>
-            )}
+            <Modal isOpen={modal} style={customStyles}>
+                <ModalProduct />
+            </Modal>
         </>
     );
 }
