@@ -34,7 +34,6 @@ export default function ModalProduct() {
                     Precio: <span>{formatCurrency(product.price)}</span>
                 </p>
                 <hr className="my-5" />
-                <ul className="flex flex-wrap items-center gap-x-5"></ul>
 
                 <div className="flex gap-4 mt-5">
                     <button
