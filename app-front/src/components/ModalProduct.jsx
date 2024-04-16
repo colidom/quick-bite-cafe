@@ -1,4 +1,5 @@
 import useKiosk from "../hooks/useKiosk";
+import { formatCurrency } from "../helpers";
 
 export default function ModalProduct() {
     const { product, handleClickModal } = useKiosk();
@@ -26,6 +27,15 @@ export default function ModalProduct() {
                         </svg>
                     </button>
                 </div>
+                <h1 className="text-3xl font-bold mt-5">{product.name}</h1>
+                <p className="mt-5 font-black text-5xl text-amber-500">
+                    Precio: <span>{formatCurrency(product.price)}</span>
+                </p>
+                <hr className="my-5" />
+                <ul className="flex flex-wrap items-center gap-x-5"></ul>
+                <button type="button" className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded">
+                    Añadir al pedido
+                </button>
             </div>
         </div>
     );
