@@ -8,6 +8,7 @@ const KioskProvider = ({ children }) => {
     const [currentCategory, setCurrentCategory] = useState(categories[0]);
     const [modal, setModal] = useState(false);
     const [product, setProduct] = useState({});
+    const [order, setOrder] = useState([]);
 
     // Convención evento clic
     const handleClickCategory = (id) => {
@@ -33,6 +34,7 @@ const KioskProvider = ({ children }) => {
                 handleClickModal,
                 product,
                 handleSetProduct,
+                order,
             }}
         >
             {children}
