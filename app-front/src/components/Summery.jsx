@@ -3,7 +3,7 @@ import useKiosk from "../hooks/useKiosk";
 export default function Summery() {
     const { order } = useKiosk();
     return (
-        <asside className="md:w-72 h-screen overflow-y-scroll p-5">
+        <aside className="md:w-72 h-screen overflow-y-scroll p-5">
             <h1 className="text-4xl font-black">Mi pedido</h1>
             <p className="text-lg my-5">Aquí podrás ver el resumen total de tu pedido.</p>
 
@@ -22,6 +22,6 @@ export default function Summery() {
                     />
                 </div>
             </form>
-        </asside>
+        </aside>
     );
 }
