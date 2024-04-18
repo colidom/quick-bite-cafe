@@ -24,8 +24,9 @@ const KioskProvider = ({ children }) => {
         setProduct(product);
     };
 
-    const handleAddOrder = (product) => {
-        console.log(product);
+    // Quitar lo de la izquierda del objeto producto
+    const handleAddOrder = ({ category_id, image, ...product }) => {
+        setOrder([...order, product]);
     };
 
     return (
