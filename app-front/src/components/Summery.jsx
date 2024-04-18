@@ -11,7 +11,7 @@ export default function Summery() {
                 {order.length === 0 ? <p className="text-center text-2xl">Aún no has añadido productos a tu pedido.</p> : <p>Si hay pedido</p>}
             </div>
 
-            <p className="text-xl mt-10">Total</p>
+            <p className="text-xl mt-10">Total: </p>
 
             <form className="w-full">
                 <div className="mt-5">

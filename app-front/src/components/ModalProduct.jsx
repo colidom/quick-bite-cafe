@@ -3,7 +3,7 @@ import useKiosk from "../hooks/useKiosk";
 import { formatCurrency } from "../helpers";
 
 export default function ModalProduct() {
-    const { product, handleClickModal } = useKiosk();
+    const { product, handleClickModal, handleAddOrder } = useKiosk();
     const [qty, setQty] = useState(1);
     return (
         <div className="md:flex gap-10">
@@ -74,7 +74,11 @@ export default function ModalProduct() {
                         </svg>
                     </button>
                 </div>
-                <button type="button" className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded">
+                <button
+                    type="button"
+                    className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
+                    onClick={() => handleAddOrder({ ...product, qty })}
+                >
                     Añadir al pedido
                 </button>
             </div>

@@ -24,6 +24,10 @@ const KioskProvider = ({ children }) => {
         setProduct(product);
     };
 
+    const handleAddOrder = (product) => {
+        console.log(product);
+    };
+
     return (
         <KioskContext.Provider
             value={{
@@ -35,6 +39,7 @@ const KioskProvider = ({ children }) => {
                 product,
                 handleSetProduct,
                 order,
+                handleAddOrder,
             }}
         >
             {children}
