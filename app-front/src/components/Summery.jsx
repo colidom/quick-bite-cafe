@@ -1,4 +1,5 @@
 import useKiosk from "../hooks/useKiosk";
+import OrderSummery from "./OrderSummery";
 
 export default function Summery() {
     const { order } = useKiosk();
@@ -8,7 +9,16 @@ export default function Summery() {
             <p className="text-lg my-5">Aquí podrás ver el resumen total de tu pedido.</p>
 
             <div className="py-10">
-                {order.length === 0 ? <p className="text-center text-2xl">Aún no has añadido productos a tu pedido.</p> : <p>Si hay pedido</p>}
+                {order.length === 0 ? (
+                    <p className="text-center text-2xl">Aún no has añadido productos a tu pedido.</p>
+                ) : (
+                    order.map(product => ( 
+                    <OrderSummery 
+                        key={product.id}
+                        product={product} 
+                        />
+                    ))
+                )}
             </div>
 
             <p className="text-xl mt-10">Total: </p>
