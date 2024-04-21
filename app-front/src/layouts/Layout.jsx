@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Modal from "react-modal";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "../components/Sidebar";
 import Summery from "../components/Summery";
 import ModalProduct from "../components/ModalProduct";
@@ -32,9 +34,12 @@ export default function Layout() {
 
                 <Summery />
             </div>
+
             <Modal isOpen={modal} style={customStyles}>
                 <ModalProduct />
             </Modal>
+
+            <ToastContainer />
         </>
     );
 }

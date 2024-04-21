@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { categories as dbCategories } from "../data/categories";
 
@@ -31,8 +32,10 @@ const KioskProvider = ({ children }) => {
         if (order.some((orderState) => orderState.id === product.id)) {
             const updatedOrder = order.map((orderState) => (orderState.id === product.id ? product : orderState));
             setOrder(updatedOrder);
+            toast.success("Pedido actualizado correctamente");
         } else {
             setOrder([...order, product]);
+            toast.success(product.name + " agregado al pedido");
         }
     };
 
