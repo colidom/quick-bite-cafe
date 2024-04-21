@@ -26,7 +26,12 @@ const KioskProvider = ({ children }) => {
 
     // Quitar lo de la izquierda del objeto producto
     const handleAddOrder = ({ category_id, image, ...product }) => {
-        setOrder([...order, product]);
+        if (order.some((orderState) => orderState.id === product.id)) {
+            const updatedOrder = order.map((orderState) => (orderState.id === product.id ? product : orderState));
+            setOrder(updatedOrder);
+        } else {
+            setOrder([...order, product]);
+        }
     };
 
     return (
