@@ -13,7 +13,7 @@ export default function ModalProduct() {
             setQty(productEdit.qty);
             setEdition(true);
         }
-    }, [order]);
+    }, [order, product.id]);
 
     return (
         <div className="md:flex gap-10">
