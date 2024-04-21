@@ -1,10 +1,11 @@
-import { Profiler, createContext, useState } from "react";
+import { createContext, useState } from "react";
+import PropTypes from "prop-types";
 import { categories as dbCategories } from "../data/categories";
 
 const KioskContext = createContext();
 
 const KioskProvider = ({ children }) => {
-    const [categories, setCategories] = useState(dbCategories);
+    const [categories] = useState(dbCategories);
     const [currentCategory, setCurrentCategory] = useState(categories[0]);
     const [modal, setModal] = useState(false);
     const [product, setProduct] = useState({});
@@ -25,6 +26,7 @@ const KioskProvider = ({ children }) => {
     };
 
     // Quitar lo de la izquierda del objeto producto
+    // eslint-disable-next-line no-unused-vars
     const handleAddOrder = ({ category_id, image, ...product }) => {
         if (order.some((orderState) => orderState.id === product.id)) {
             const updatedOrder = order.map((orderState) => (orderState.id === product.id ? product : orderState));
@@ -51,6 +53,10 @@ const KioskProvider = ({ children }) => {
             {children}
         </KioskContext.Provider>
     );
+};
+
+KioskProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export { KioskProvider };
