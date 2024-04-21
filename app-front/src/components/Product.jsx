@@ -30,6 +30,7 @@ export default function Product({ product }) {
 Product.propTypes = {
     product: PropTypes.shape({
         name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         category_id: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired,
