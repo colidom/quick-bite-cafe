@@ -21,8 +21,6 @@ Modal.setAppElement("#root");
 export default function Layout() {
     const { modal } = useKiosk();
 
-    console.log(modal);
-
     return (
         <>
             <div className="md:flex">
