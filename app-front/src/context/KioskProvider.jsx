@@ -26,9 +26,15 @@ const KioskProvider = ({ children }) => {
         setProduct(product);
     };
 
+    const handleEditQty = (id) => {
+        const updateProduct = order.filter((product) => product.id === id)[0];
+        setProduct(updateProduct);
+        setModal(!modal);
+    };
+
     // Quitar lo de la izquierda del objeto producto
     // eslint-disable-next-line no-unused-vars
-    const handleAddOrder = ({ category_id, image, ...product }) => {
+    const handleAddOrder = ({ category_id, ...product }) => {
         if (order.some((orderState) => orderState.id === product.id)) {
             const updatedOrder = order.map((orderState) => (orderState.id === product.id ? product : orderState));
             setOrder(updatedOrder);
@@ -51,6 +57,7 @@ const KioskProvider = ({ children }) => {
                 handleSetProduct,
                 order,
                 handleAddOrder,
+                handleEditQty,
             }}
         >
             {children}
