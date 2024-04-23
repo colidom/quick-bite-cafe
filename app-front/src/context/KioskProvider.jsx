@@ -26,12 +26,6 @@ const KioskProvider = ({ children }) => {
         setProduct(product);
     };
 
-    const handleEditQty = (id) => {
-        const updateProduct = order.filter((product) => product.id === id)[0];
-        setProduct(updateProduct);
-        setModal(!modal);
-    };
-
     // Quitar lo de la izquierda del objeto producto
     // eslint-disable-next-line no-unused-vars
     const handleAddOrder = ({ category_id, ...product }) => {
@@ -43,6 +37,18 @@ const KioskProvider = ({ children }) => {
             setOrder([...order, product]);
             toast.success(product.name + " agregado al pedido");
         }
+    };
+
+    const handleEditQty = (id) => {
+        const updateProduct = order.filter((product) => product.id === id)[0];
+        setProduct(updateProduct);
+        setModal(!modal);
+    };
+
+    const handleDeleteOrderProduct = (id) => {
+        const updatedProduct = order.filter((product) => product.id !== id);
+        setOrder(updatedProduct);
+        toast.success(product.name + " eliminado correctamente del pedido!");
     };
 
     return (
@@ -58,6 +64,7 @@ const KioskProvider = ({ children }) => {
                 order,
                 handleAddOrder,
                 handleEditQty,
+                handleDeleteOrderProduct,
             }}
         >
             {children}
