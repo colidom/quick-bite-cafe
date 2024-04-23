@@ -1,6 +1,6 @@
 import { formatCurrency } from "../helpers";
 
-export default function OrderSummery({ product }) {
+export default function ProductSummery({ product }) {
     const { id, name, price, qty } = product;
 
     return (
