@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { categories as dbCategories } from "../data/categories";
@@ -11,6 +11,12 @@ const KioskProvider = ({ children }) => {
     const [modal, setModal] = useState(false);
     const [product, setProduct] = useState({});
     const [order, setOrder] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    useEffect(() => {
+        const newTotal = order.reduce((total, product) => product.price * product.qty + total, 0);
+        setTotal(newTotal);
+    }, [order]);
 
     // Convención evento clic
     const handleClickCategory = (id) => {
@@ -65,6 +71,7 @@ const KioskProvider = ({ children }) => {
                 handleAddOrder,
                 handleEditQty,
                 handleDeleteOrderProduct,
+                total,
             }}
         >
             {children}

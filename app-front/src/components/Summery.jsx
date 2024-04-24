@@ -1,8 +1,9 @@
 import useKiosk from "../hooks/useKiosk";
 import ProductSummery from "./ProductSummery";
+import { formatCurrency } from "../helpers";
 
 export default function Summery() {
-    const { order } = useKiosk();
+    const { order, total } = useKiosk();
     return (
         <aside className="md:w-72 h-screen overflow-y-scroll p-5">
             <h1 className="text-4xl font-black">Mi pedido</h1>
@@ -16,7 +17,10 @@ export default function Summery() {
                 )}
             </div>
 
-            <p className="text-xl mt-10">Total: </p>
+            <p className="text-xl mt-10">
+                Total: {""}
+                {formatCurrency(total)}
+            </p>
 
             <form className="w-full">
                 <div className="mt-5">
