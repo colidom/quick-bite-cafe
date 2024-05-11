@@ -1,13 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import { categories as dbCategories } from "../data/categories";
+import axios from "axios";
 
 const KioskContext = createContext();
 
 const KioskProvider = ({ children }) => {
-    const [categories] = useState(dbCategories);
-    const [currentCategory, setCurrentCategory] = useState(categories[0]);
+    const [categories, setCategory] = useState([]);
+    const [currentCategory, setCurrentCategory] = useState({});
     const [modal, setModal] = useState(false);
     const [product, setProduct] = useState({});
     const [order, setOrder] = useState([]);
@@ -17,6 +17,20 @@ const KioskProvider = ({ children }) => {
         const newTotal = order.reduce((total, product) => product.price * product.qty + total, 0);
         setTotal(newTotal);
     }, [order]);
+
+    const getCategories = async () => {
+        try {
+            const { data } = await axios("http://127.0.0.1:8000/api/categories");
+            setCategory(data.data);
+            setCurrentCategory(data.data[0]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getCategories();
+    }, []);
 
     // Convención evento clic
     const handleClickCategory = (id) => {
