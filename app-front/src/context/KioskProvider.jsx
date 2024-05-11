@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import axios from "axios";
+import axiosClient from "../config/axios";
 
 const KioskContext = createContext();
 
@@ -20,7 +20,7 @@ const KioskProvider = ({ children }) => {
 
     const getCategories = async () => {
         try {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/api/categories`);
+            const { data } = await axiosClient("/api/categories");
             setCategory(data.data);
             setCurrentCategory(data.data[0]);
         } catch (error) {
