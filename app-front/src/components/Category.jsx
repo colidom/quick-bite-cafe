@@ -3,7 +3,7 @@ import useKiosk from "../hooks/useKiosk";
 
 export default function Category({ category }) {
     const { handleClickCategory, currentCategory } = useKiosk();
-    const { icono, id, name } = category;
+    const { icon, id, name } = category;
 
     const highlightCurrentCategory = () => (currentCategory.id === id ? "bg-amber-400" : "bg-white");
 
@@ -13,7 +13,7 @@ export default function Category({ category }) {
             type="button"
             onClick={() => handleClickCategory(id)}
         >
-            <img src={`/img/icono_${icono}.svg`} alt="Imagen icono" className="w-12" />
+            <img src={`/img/icono_${icon}.svg`} alt="Imagen icono" className="w-12" />
             <span className="text-lg font-bold truncate">{name}</span>
         </button>
     );
@@ -21,7 +21,7 @@ export default function Category({ category }) {
 
 Category.propTypes = {
     category: PropTypes.shape({
-        icono: PropTypes.string.isRequired,
+        icon: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
     }).isRequired,
