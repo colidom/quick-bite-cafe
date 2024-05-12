@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return new ProductCollection(Product::where('available', 1)->orderBy('id', 'DESC')->paginate(self::PAGINATION_VALUE));
+        return new ProductCollection(Product::where('available', 1)->orderBy('id', 'DESC')->get());
     }
 
     /**
