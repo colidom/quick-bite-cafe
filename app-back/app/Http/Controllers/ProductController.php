@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductCollection;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // Definimos la constante para el valor de paginación
+    const PAGINATION_VALUE = 10;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return new ProductCollection(Product::where('available', 1)->orderBy('id', 'DESC')->paginate(self::PAGINATION_VALUE));
     }
 
     /**
