@@ -1,6 +1,7 @@
 import { createRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosClient from "../config/axios";
+import Alert from "../components/Alert";
 
 export default function Register() {
     const nameRef = createRef();
@@ -8,6 +9,8 @@ export default function Register() {
     const emailRef = createRef();
     const passwordRef = createRef();
     const passwordConfirmationRef = createRef();
+
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +27,7 @@ export default function Register() {
             const response = await axiosClient.post("/api/register", formData);
             console.log(response);
         } catch (error) {
-            console.log(error);
+            setErrors(Object.values(error.response.data.errors));
         }
     };
     return (
@@ -33,7 +36,8 @@ export default function Register() {
             <p>Introduce tus datos para crear una cuenta</p>
 
             <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
-                <form action="" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
+                    {errors ? errors.map((error, index) => <Alert key={index}>{error}</Alert>) : null}
                     <div className="mb-4">
                         <label className="text-slate-800" htmlFor="name">
                             Nombre:
