@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -10,7 +11,21 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         // Validar el registro
-        $data = $request->validate();
+        $data = $request->validated();
+
+        // Crear el usuario
+        $user = User::create([
+            'name' => $data['name'],
+            'surname' => $data['surname'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
+
+        // Retornar respuesta
+        return [
+            'token' => $user->createToken('token')->plainTextToken,
+            'user' => $user
+        ];
     }
 
     public function login(Request $request)
