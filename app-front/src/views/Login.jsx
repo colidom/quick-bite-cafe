@@ -32,6 +32,7 @@ export default function Login() {
 
             <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
                 <form onSubmit={handleSubmit} noValidate>
+                    {errors ? errors.map((error, index) => <Alert key={index}>{error}</Alert>) : null}
                     <div className="mb-4">
                         <label className="text-slate-800" htmlFor="email">
                             Email:

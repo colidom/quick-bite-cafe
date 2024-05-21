@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class AuthController extends Controller
         $data = $request->validate();
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        return "Desde Login";
+        $data = $request->validated();
     }
 
     public function logout(Request $request)
