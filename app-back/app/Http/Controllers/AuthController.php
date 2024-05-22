@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         // Validar el registro
-        $data = $request->validate();
+        $data = $request->validated();
 
         // Crear el usuario
         $user = User::create([
@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         // Retornar una respuesta
         return [
-            'token' => $user->createToken('token')->textPlainToken,
+            'token' => $user->createToken('token')->plainTextToken,
             'user' => $user
         ];
     }
@@ -40,6 +40,9 @@ class AuthController extends Controller
                 'errors' => '¡El email o la contraseña son incorrectos!'
             ], 422);
         };
+
+        // Autenticar al usuario
+        $user = Auth::user();
     }
 
     public function logout(Request $request)
