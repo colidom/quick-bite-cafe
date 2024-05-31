@@ -1,18 +1,51 @@
+import { createRef, useState } from "react";
 import { Link } from "react-router-dom";
+import axiosClient from "../config/axios";
+import Alert from "../components/Alert";
 
 export default function Login() {
+    const emailRef = createRef();
+    const passwordRef = createRef();
+
+    const [errors, setErrors] = useState([]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+        };
+
+        try {
+            const response = await axiosClient.post("/api/login", formData);
+            console.log(response.token);
+        } catch (error) {
+            setErrors(Object.values(error.response.data.errors));
+        }
+    };
+
     return (
         <>
             <h1 className="text-4xl front-black">Iniciar sesión</h1>
             <p>Antes de crear un pedido, primero inicia sesión con tu cuenta</p>
 
             <div className="bg-white shadow-md rounded-md mt-10 px-5 py-10">
-                <form action="">
+                <form onSubmit={handleSubmit} noValidate>
+                    {errors ? errors.map((error, index) => <Alert key={index}>{error}</Alert>) : null}
                     <div className="mb-4">
                         <label className="text-slate-800" htmlFor="email">
                             Email:
                         </label>
-                        <input type="email" id="email" className="mt-2 w-full p-3 bg-gray-100" name="email" placeholder="Tu email" formNoValidate />
+                        <input
+                            type="email"
+                            id="email"
+                            className="mt-2 w-full p-3 bg-gray-100"
+                            name="email"
+                            placeholder="Tu email"
+                            formNoValidate
+                            ref={emailRef}
+                        />
                     </div>
                     <div className="mb-4">
                         <label className="text-slate-800" htmlFor="email">
@@ -25,6 +58,7 @@ export default function Login() {
                             name="password"
                             placeholder="Tu contraseña"
                             formNoValidate
+                            ref={passwordRef}
                         />
                     </div>
                     <input

@@ -27,6 +27,7 @@ export default function Register() {
             const response = await axiosClient.post("/api/register", formData);
             console.log(response);
         } catch (error) {
+            console.log(error);
             setErrors(Object.values(error.response.data.errors));
         }
     };
