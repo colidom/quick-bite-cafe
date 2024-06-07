@@ -5,13 +5,16 @@ import { useAuth } from "../hooks/useAuth";
 export default function Sidebar() {
     // Custom hook
     const { categories } = useKiosk();
-    const { logout } = useAuth({ middleware: "auth" });
+    const { logout, user } = useAuth({ middleware: "auth" });
 
     return (
         <aside className="md:w-72">
             <div className="p-4">
                 <img src="img/logo.svg" alt="Imagen logotipo" className="w-40" />
             </div>
+            <p className="my-10 text-xl text-center">
+                Bienvenido/a: {user?.name} {user?.surname}
+            </p>
 
             <div className="mt-10">
                 {categories.map((category) => (

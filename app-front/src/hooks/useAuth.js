@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useSWR from "swr";
-import { Await, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axiosClient from "../config/axios";
 
 export const useAuth = ({ middleware, url }) => {
@@ -35,7 +35,17 @@ export const useAuth = ({ middleware, url }) => {
         }
     };
 
-    const register = () => {};
+    const register = async (formData, setErrors) => {
+        try {
+            const { data } = await axiosClient.post("/api/register", formData);
+            localStorage.setItem("AUTH_TOKEN", data.token);
+            setErrors([]);
+            await mutate();
+        } catch (error) {
+            console.log(error);
+            setErrors(Object.values(error.response.data.errors));
+        }
+    };
 
     const logout = async () => {
         try {
