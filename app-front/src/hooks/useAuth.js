@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import useSWR from "swr";
+import { useNavigate } from "react-router-dom";
 import axiosClient from "../config/axios";
 
 export const useAuth = ({ middleware, url }) => {
     // Obtenemos token del local storage
     const token = localStorage.getItem("AUTH_TOKEN");
+    const navigate = useNavigate();
 
     const {
         data: user,
@@ -36,7 +39,9 @@ export const useAuth = ({ middleware, url }) => {
 
     const logout = () => {};
 
-    console.log(user, error);
+    useEffect(() => {
+        if (middleware === "guest" && url && user) navigate(url);
+    }, [user, error]);
 
     return {
         login,
