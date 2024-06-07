@@ -1,13 +1,17 @@
 import { createRef, useState } from "react";
 import { Link } from "react-router-dom";
-import axiosClient from "../config/axios";
 import Alert from "../components/Alert";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Login() {
     const emailRef = createRef();
     const passwordRef = createRef();
 
     const [errors, setErrors] = useState([]);
+    const { login } = useAuth({
+        middleware: "guest",
+        url: "/",
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,13 +21,7 @@ export default function Login() {
             password: passwordRef.current.value,
         };
 
-        try {
-            const { data } = await axiosClient.post("/api/login", formData);
-            localStorage.setItem("AUTH_TOKEN", data.token);
-            setErrors([]);
-        } catch (error) {
-            setErrors(Object.values(error.response.data.errors));
-        }
+        login(formData, setErrors);
     };
 
     return (
