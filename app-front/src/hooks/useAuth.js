@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useSWR from "swr";
-import { useNavigate } from "react-router-dom";
+import { Await, useNavigate } from "react-router-dom";
 import axiosClient from "../config/axios";
 
 export const useAuth = ({ middleware, url }) => {
@@ -37,17 +37,29 @@ export const useAuth = ({ middleware, url }) => {
 
     const register = () => {};
 
-    const logout = () => {};
+    const logout = async () => {
+        try {
+            await axiosClient.post("/api/logout", null, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            localStorage.removeItem("AUTH_TOKEN");
+            await mutate(undefined);
+        } catch (error) {
+            throw Error(Object.values(error?.response?.data?.errors));
+        }
+    };
 
     useEffect(() => {
         if (middleware === "guest" && url && user) navigate(url);
         if (middleware === "auth" && error) navigate("/auth/login");
     }, [user, error]);
 
-    console.log(user);
-    console.log(error);
+    // console.log(user);
+    // console.log(error);
 
-    console.log(middleware);
+    // console.log(middleware);
     return {
         login,
         register,

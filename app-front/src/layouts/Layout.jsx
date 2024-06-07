@@ -25,8 +25,8 @@ export default function Layout() {
     const { user, error } = useAuth({ middleware: "auth" });
     const { modal } = useKiosk();
 
-    console.log(user);
-    console.log(error);
+    //console.log(user);
+    //console.log(error);
 
     return (
         <>
