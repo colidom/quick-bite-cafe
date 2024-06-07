@@ -41,11 +41,18 @@ export const useAuth = ({ middleware, url }) => {
 
     useEffect(() => {
         if (middleware === "guest" && url && user) navigate(url);
+        if (middleware === "auth" && error) navigate("/auth/login");
     }, [user, error]);
 
+    console.log(user);
+    console.log(error);
+
+    console.log(middleware);
     return {
         login,
         register,
         logout,
+        user,
+        error,
     };
 };

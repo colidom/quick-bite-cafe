@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import Summery from "../components/Summery";
 import ModalProduct from "../components/ModalProduct";
 import useKiosk from "../hooks/useKiosk";
+import { useAuth } from "../hooks/useAuth";
 
 const customStyles = {
     content: {
@@ -21,7 +22,11 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export default function Layout() {
+    const { user, error } = useAuth({ middleware: "auth" });
     const { modal } = useKiosk();
+
+    console.log(user);
+    console.log(error);
 
     return (
         <>
