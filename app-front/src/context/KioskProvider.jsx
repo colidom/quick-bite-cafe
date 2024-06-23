@@ -75,13 +75,15 @@ const KioskProvider = ({ children }) => {
         const token = localStorage.getItem("AUTH_TOKEN");
 
         try {
-            await axiosClient.post("/api/order"),
+            await axiosClient.post(
+                "/api/order",
                 {},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
-                };
+                }
+            );
         } catch (error) {
             console.log(error);
         }
