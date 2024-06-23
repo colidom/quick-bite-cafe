@@ -71,11 +71,11 @@ const KioskProvider = ({ children }) => {
         toast.success(product.name + " eliminado correctamente del pedido!");
     };
 
-    const handleSubmitNewOrder = async () => {
+    const handleSubmitNewOrder = async (logout) => {
         const token = localStorage.getItem("AUTH_TOKEN");
 
         try {
-            await axiosClient.post(
+            const { data } = await axiosClient.post(
                 "/api/order",
                 {
                     total,
@@ -92,6 +92,16 @@ const KioskProvider = ({ children }) => {
                     },
                 }
             );
+            toast.success(data.message);
+            setTimeout(() => {
+                setOrder([]);
+            }, 1000);
+
+            // Cerrar la sesión del usuario
+            setTimeout(() => {
+                localStorage.removeItem("AUTH_TOKEN");
+                logout();
+            }, 3000);
         } catch (error) {
             console.log(error);
         }

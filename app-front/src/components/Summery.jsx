@@ -1,13 +1,15 @@
 import useKiosk from "../hooks/useKiosk";
 import ProductSummery from "./ProductSummery";
 import { formatCurrency } from "../helpers";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Summery() {
     const { order, total, handleSubmitNewOrder } = useKiosk();
+    const { logout } = useAuth({});
     const checkOrder = () => order.length === 0;
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleSubmitNewOrder();
+        handleSubmitNewOrder(logout);
     };
 
     return (

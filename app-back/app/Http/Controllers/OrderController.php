@@ -52,7 +52,7 @@ class OrderController extends Controller
         OrderProduct::insert($order_product);
 
         return [
-            'message' => "Pedido realizado!"
+            'message' => "Pedido realizado correctamente, estará listo en unos minutos!"
         ];
     }
 
