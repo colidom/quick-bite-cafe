@@ -9,7 +9,7 @@ export default function Home() {
     // Consulta SWR
     const fetcher = () => axiosClient("/api/products").then((data) => data.data);
     const { data, error, isLoading } = useSWR("/api/products", fetcher, {
-        refreshInterval: 1000,
+        refreshInterval: 6000,
     });
 
     if (isLoading) return "Cargando...";
