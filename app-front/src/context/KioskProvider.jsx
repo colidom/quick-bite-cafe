@@ -77,7 +77,7 @@ const KioskProvider = ({ children }) => {
         try {
             await axiosClient.post(
                 "/api/order",
-                {},
+                { total },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
