@@ -3,8 +3,12 @@ import ProductSummery from "./ProductSummery";
 import { formatCurrency } from "../helpers";
 
 export default function Summery() {
-    const { order, total } = useKiosk();
+    const { order, total, handleSubmitNewOrder } = useKiosk();
     const checkOrder = () => order.length === 0;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleSubmitNewOrder();
+    };
 
     return (
         <aside className="md:w-72 h-screen overflow-y-scroll p-5">
@@ -25,7 +29,7 @@ export default function Summery() {
             </p>
 
             <form className="w-full">
-                <div className="mt-5">
+                <div className="mt-5" onSubmit={handleSubmit}>
                     <input
                         type="submit"
                         className={` ${

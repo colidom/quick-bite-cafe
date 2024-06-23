@@ -71,6 +71,22 @@ const KioskProvider = ({ children }) => {
         toast.success(product.name + " eliminado correctamente del pedido!");
     };
 
+    const handleSubmitNewOrder = async () => {
+        const token = localStorage.getItem("AUTH_TOKEN");
+
+        try {
+            await axiosClient.post("/api/orders"),
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <KioskContext.Provider
             value={{
@@ -86,6 +102,7 @@ const KioskProvider = ({ children }) => {
                 handleEditQty,
                 handleDeleteOrderProduct,
                 total,
+                handleSubmitNewOrder,
             }}
         >
             {children}
