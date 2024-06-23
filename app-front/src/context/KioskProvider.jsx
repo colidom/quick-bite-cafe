@@ -75,7 +75,7 @@ const KioskProvider = ({ children }) => {
         const token = localStorage.getItem("AUTH_TOKEN");
 
         try {
-            await axiosClient.post("/api/orders"),
+            await axiosClient.post("/api/order"),
                 {},
                 {
                     headers: {

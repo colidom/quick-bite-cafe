@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // Almacenar ordenes
+    // Almacenar pedidos
     Route::apiResource('/order', OrderController::class);
 });
 

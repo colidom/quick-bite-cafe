@@ -28,8 +28,8 @@ export default function Summery() {
                 {formatCurrency(total)}
             </p>
 
-            <form className="w-full">
-                <div className="mt-5" onSubmit={handleSubmit}>
+            <form className="w-full" onSubmit={handleSubmit}>
+                <div className="mt-5">
                     <input
                         type="submit"
                         className={` ${
