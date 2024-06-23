@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import useKiosk from "../hooks/useKiosk";
 import { formatCurrency } from "../helpers";
 
@@ -41,3 +42,12 @@ export default function ProductSummery({ product }) {
         </div>
     );
 }
+
+ProductSummery.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        qty: PropTypes.string.isRequired,
+    }).isRequired,
+};
