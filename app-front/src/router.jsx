@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import AuthLayout from "./layouts/AuthLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import Orders from "./views/Orders";
+import Products from "./views/Products";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Register from "./views/Register";
@@ -27,6 +30,20 @@ const router = createBrowserRouter([
             {
                 path: "/auth/register",
                 element: <Register />,
+            },
+        ],
+    },
+    {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+            {
+                index: true,
+                element: <Orders />,
+            },
+            {
+                path: "/admin/products",
+                element: <Products />,
             },
         ],
     },
