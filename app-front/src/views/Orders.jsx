@@ -12,7 +12,7 @@ export default function Orders() {
 
     const { data, error, isLoading } = useSWR("/api/order", fetcher);
 
-    console.log(data);
+    console.log(data?.data);
     console.log(error);
     console.log(isLoading);
 
