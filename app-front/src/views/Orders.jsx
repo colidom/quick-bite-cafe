@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import useKiosk from "../hooks/useKiosk";
 import axiosClient from "../config/axios";
 import { formatCurrency } from "../helpers";
 
@@ -11,7 +12,8 @@ export default function Orders() {
             },
         });
 
-    const { data, isLoading } = useSWR("/api/order", fetcher);
+    const { data, isLoading } = useSWR("/api/order", fetcher, { refreshInterval: 1000 });
+    const { handleClickCompleteOrder } = useKiosk();
 
     if (isLoading) return "Cargando pedidos...";
 
@@ -48,6 +50,7 @@ export default function Orders() {
                         <button
                             type="button"
                             className="bg-indigo-600 hover:bg-indigo-800 cursor-pointer px-5 py-2 rounded uppercase font-bold text-white text-center w-full"
+                            onClick={() => handleClickCompleteOrder(order.id)}
                         >
                             Completar{" "}
                         </button>
