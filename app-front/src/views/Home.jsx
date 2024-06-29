@@ -14,7 +14,7 @@ export default function Home() {
                 Authorization: `Bearer ${token}`,
             },
         }).then((data) => data.data);
-    const { data, error, isLoading } = useSWR("/api/products", fetcher, {
+    const { data, isLoading } = useSWR("/api/products", fetcher, {
         refreshInterval: 6000,
     });
 

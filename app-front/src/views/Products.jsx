@@ -11,7 +11,7 @@ export default function Products() {
             },
         }).then((data) => data.data);
 
-    const { data, error, isLoading } = useSWR("/api/products", fetcher, {
+    const { data, isLoading } = useSWR("/api/products", fetcher, {
         refreshInterval: 6000,
     });
 

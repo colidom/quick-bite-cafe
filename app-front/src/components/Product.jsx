@@ -7,7 +7,7 @@ export default function Product({ product, addButton = false, availableButton = 
     const { name, image, price } = product;
 
     return (
-        <div className="border p-3 shaow bg-white">
+        <div className="border p-3 shadow bg-white">
             <img src={`/img/${image}.jpg`} alt={`Imagen ${name}`} />
             <div className="py-5">
                 <h3 className="text-2xl font-bold">{name}</h3>
@@ -46,4 +46,6 @@ Product.propTypes = {
         category_id: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired,
     }).isRequired,
+    addButton: PropTypes.bool,
+    availableButton: PropTypes.bool,
 };
