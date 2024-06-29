@@ -3,7 +3,7 @@ import { formatCurrency } from "../helpers";
 import useKiosk from "../hooks/useKiosk";
 
 export default function Product({ product, addButton = false, availableButton = false }) {
-    const { handleClickModal, handleSetProduct } = useKiosk();
+    const { handleClickModal, handleSetProduct, handleClickOutOfStockProduct } = useKiosk();
     const { name, image, price } = product;
 
     return (
@@ -28,7 +28,7 @@ export default function Product({ product, addButton = false, availableButton = 
                     <button
                         type="button"
                         className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
-                        onClick={() => {}}
+                        onClick={() => handleClickOutOfStockProduct(product.id)}
                     >
                         Producto agotado
                     </button>
