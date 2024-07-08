@@ -19,8 +19,14 @@ const KioskProvider = ({ children }) => {
     }, [order]);
 
     const getCategories = async () => {
+        const token = localStorage.getItem("AUTH_TOKEN");
         try {
-            const { data } = await axiosClient("/api/categories");
+            const { data } = await axiosClient("/api/categories", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
             setCategory(data.data);
             setCurrentCategory(data.data[0]);
         } catch (error) {
@@ -107,10 +113,11 @@ const KioskProvider = ({ children }) => {
         }
     };
 
-    const handleClickCompleteOrder = async (id) => {
+    const handleClickOutOfStockProduct = async (id) => {
         const token = localStorage.getItem("AUTH_TOKEN");
+
         try {
-            await axiosClient.put(`/api/order/${id}`, null, {
+            await axiosClient.put(`/api/products/${id}`, null, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -135,7 +142,7 @@ const KioskProvider = ({ children }) => {
                 handleDeleteOrderProduct,
                 total,
                 handleSubmitNewOrder,
-                handleClickCompleteOrder,
+                handleClickOutOfStockProduct,
             }}
         >
             {children}
